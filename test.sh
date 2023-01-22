@@ -130,6 +130,7 @@ npm install styliner
 npm i --save-dev cypress-mochawesome-reporter
 npm i --save-dev mocha-junit-reporter
 npm i --save-dev cypress-multi-reporters
+npm i --save-dev cypress-qase-reporter
 npm i babel-plugin-module-resolver
 
 
@@ -151,7 +152,7 @@ npm run delete:reportFolderReport
 npm run pre-test
 nohup Xvfb :99 > /dev/null 2>&1 &
 export DISPLAY=:99
-npm run test
+QASE_REPORT=1 npm test
 MVNSTATE=$?
 pkill Xvfb
 npm run report:merge

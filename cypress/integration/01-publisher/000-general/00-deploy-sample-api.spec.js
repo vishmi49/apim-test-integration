@@ -1,3 +1,4 @@
+import { qase } from "cypress-qase-reporter/dist/mocha";
 
 describe("publisher-000-00 : Verify authorized user can deploy sample api in publisher portal", () => {
     const publisher = 'publisher';
@@ -22,11 +23,16 @@ describe("publisher-000-00 : Verify authorized user can deploy sample api in pub
         cy.reload();
         cy.carbonLogout();
     });
-
+    
+    qase(16,
     it.only("Verify admin user can deploy sample api", () => {
         cy.loginToPublisher(publisher, password);
         cy.deploySampleAPI();
-    });
+  
+    })
+);
+    
+    
 
     after(function () {
         // Test is done. Now delete the api
@@ -35,4 +41,5 @@ describe("publisher-000-00 : Verify authorized user can deploy sample api in pub
         //cy.visit('carbon/user/user-mgt.jsp');
         //cy.deleteUser(publisher);
     })
-});
+    
+})

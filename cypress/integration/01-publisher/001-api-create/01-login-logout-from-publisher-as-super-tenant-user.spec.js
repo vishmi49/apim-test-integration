@@ -1,4 +1,4 @@
-
+import { qase } from "cypress-qase-reporter/dist/mocha";
 /*
  * Copyright (c) 2021, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
@@ -22,6 +22,7 @@ describe("publisher-001-01 : Verify an authorized user can perform login and log
     const carbonUsername = 'admin'
     const carbonPassword = 'admin'
 
+    qase(19,
     it.only("Verify super user can login and logout successfully from publisher", () => {
         cy.loginToPublisher(carbonUsername, carbonPassword);
         cy.get('[data-testid="api-table-view"]').then(() => {
@@ -30,7 +31,9 @@ describe("publisher-001-01 : Verify an authorized user can perform login and log
             cy.get('#usernameUserInput').should('exist');
         })
     })
+ )
 
+    qase(120 ,
     it.only("Verify tenant user can login and logout successfully from publisher", () => {
         const tenant = 'wso2.com';
         const tenantAdminUsername = 'admin';
@@ -48,7 +51,8 @@ describe("publisher-001-01 : Verify an authorized user can perform login and log
             cy.get('[data-testid="logout-menu-item"]').click();
             cy.get('#usernameUserInput').should('exist');
         })
-    })
+      })
+    )
     after(() => {
         //cy.visit('carbon/user/user-mgt.jsp');
         //cy.deleteUser(tenantUser);

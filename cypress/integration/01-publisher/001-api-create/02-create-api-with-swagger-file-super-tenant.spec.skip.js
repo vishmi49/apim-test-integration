@@ -1,3 +1,4 @@
+import { qase } from "cypress-qase-reporter/dist/mocha";
 /*
  * Copyright (c) 2021, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  * Version 2.0 (the "License"); you may not use this file except
@@ -45,6 +46,7 @@ describe("publisher-001-02 : Verify creating an api with swagger file", () => {
         // validate
         cy.get('[data-testid="itest-api-name-version"]', { timeout: 30000 }).contains('1.0.5');
     }
+    qase(20,
     it("Verify super tenant user can create API from swagger file", () => {
         cy.carbonLogin(carbonUsername, carbonPassword);
         cy.addNewUser(publisher, ['Internal/publisher', 'Internal/creator', 'Internal/everyone'], password);
@@ -57,8 +59,10 @@ describe("publisher-001-02 : Verify creating an api with swagger file", () => {
         cy.visit('carbon/user/user-mgt.jsp');
         cy.deleteUser(publisher);
         cy.carbonLogout();
-    });
-
+    })
+   )
+    
+    qase(121,
     it("Verify tenant user can create API from swagger from file", () => {
         const tenant = 'wso2.com';
         cy.carbonLogin(carbonUsername, carbonPassword);
@@ -72,6 +76,6 @@ describe("publisher-001-02 : Verify creating an api with swagger file", () => {
 
         cy.visit('carbon/user/user-mgt.jsp');
         cy.deleteUser(tenantUser);
-    });
-    
+    })
+  )
 })

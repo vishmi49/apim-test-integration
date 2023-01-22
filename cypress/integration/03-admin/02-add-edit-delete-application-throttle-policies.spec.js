@@ -1,4 +1,4 @@
-
+import { qase } from "cypress-qase-reporter/dist/mocha";
 /*
  * Copyright (c) 2021, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
@@ -24,6 +24,7 @@ describe("admin-02 : Verify admin user can perform CRUD operations in applicatio
     before(function () {
         cy.loginToAdmin(carbonUsername, carbonPassword);
     })
+    qase([90,91,92],
     it.only("Verify admin user can Add-Edit-Delete application throttle policies", () => {
         const policyName = '80PerMin';
         cy.get('[data-testid="Application Policies-child-link"]').click();
@@ -48,6 +49,8 @@ describe("admin-02 : Verify admin user can perform CRUD operations in applicatio
         cy.get(`[data-testid="${policyName}-actions"] > span:nth-child(2)`).click();
         cy.get('button > span').contains('Delete').click();
         cy.get(`[data-testid="${policyName}-actions"]`).should('not.exist');
-    });
+    })
+
+    );
 
 })

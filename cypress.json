@@ -1,22 +1,39 @@
 {
-    "chromeWebSecurity": false,
-    "pageLoadTimeout": 250000,
-    "defaultCommandTimeout": 250000,
-    "baseUrl": "https://localhost:9443",
-    "screenshotsFolder": "cypress/screenshots",
-    "screenshotOnRunFailure":true,
-    "experimentalInteractiveRunEvents": true,
-    "reporter": "cypress-multi-reporters",
-    "reporterOptions": {
-      "inlineAssets": true,
-      "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
-      "mochaJunitReporterReporterOptions": {
-        "mochaFile": "cypress/reports/junit/results-[hash].xml"
-      },
-      "cypressMochawesomeReporterReporterOptions": {
-        "charts": true,
-        "reportPageTitle": "custom-title"
-      }
+  "chromeWebSecurity": false,
+  "pageLoadTimeout": 250000,
+  "defaultCommandTimeout": 250000,
+  "largeTimeout": 250000,
+  "baseUrl": "https://localhost:9443",
+  "screenshotsFolder": "cypress/screenshots",
+  "screenshotOnRunFailure":true,
+  "experimentalInteractiveRunEvents": true,
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+    "inlineAssets": true,
+    "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter, cypress-qase-reporter", 
+    "mochaJunitReporterReporterOptions": {
+      "mochaFile": "cypress/reports/junit/results-[hash].xml"
     },
-    "video": false
+
+    "cypressMochawesomeReporterReporterOptions": {
+      "charts": true,
+      "reportPageTitle": "custom-title"
+    },
+
+    "cypressQaseReporterReporterOptions":{
+      "apiToken": "0d09462fb213aa6621d6f8cff99183db2a7354b2",
+      "projectCode": "APIM",
+      "logging": true,
+      "runComplete": false,
+      "basePath": "https://api.qase.io/v1"
+
+    }
+  },
+
+"video": false,
+"scrollBehavior" : "nearest",
+"e2e": {
+  "excludeSpecPattern": "**/*.skip.js"
+}
+
 }

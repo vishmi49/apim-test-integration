@@ -24,6 +24,7 @@ describe("admin-00 : Verify authorized user can perform CRUD operations in Micro
     before(function () {
         cy.loginToAdmin(carbonUsername, carbonPassword);
     })
+    qase([1,2,3],
     it.only("Authorized user add edit and delete Microgateway lables", () => {
         cy.get('[data-testid="Gateways-link"]').click();
         cy.get('.MuiButton-label').contains('Add Gateway Label').click();
@@ -48,6 +49,7 @@ describe("admin-00 : Verify authorized user can perform CRUD operations in Micro
         cy.get('[data-testid="MuiDataTableBodyCell-4-0"] div > span:nth-child(2)').click();
         cy.get('button > span').contains('Delete').click();
         cy.get('.MuiButton-label').contains('Add Gateway Label').should('exist');
-    });
+    })
+    );
 
 })

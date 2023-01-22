@@ -1,3 +1,4 @@
+import { qase } from "cypress-qase-reporter/dist/mocha";
 
 describe("publisher-000-01 : Verify an authorized user can create a new version of API", () => {
     const apiName = 'newapi' + Math.floor(Date.now() / 1000);
@@ -12,6 +13,7 @@ describe("publisher-000-01 : Verify an authorized user can create a new version 
         //cy.carbonLogin(carbonUsername, carbonPassword);
         //cy.addNewUser(publisher, ['Internal/publisher', 'Internal/creator', 'Internal/everyone'], password);
     })
+    qase(17,
     it.only("An authorized user can create a new version of API", () => {
         cy.loginToPublisher(publisher, password);
 
@@ -24,7 +26,8 @@ describe("publisher-000-01 : Verify an authorized user can create a new version 
         // Validate
         cy.get('[data-testid="api-name-version-title"]', { timeout: 30000 }).should('be.visible');
         cy.get('[data-testid="api-name-version-title"]').contains(`${apiName} :${apiVersion}`);
-    });
+    })
+);
 
     after(function () {
         // Test is done. Now delete the api
