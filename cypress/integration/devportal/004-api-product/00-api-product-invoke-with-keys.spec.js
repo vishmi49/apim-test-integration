@@ -127,7 +127,7 @@ describe("devportal-004-00 : Invoke API Product with keys", () => {
                         cy.get('[data-value="100"]').click();
 
                         cy.get(`#policy-subscribe-btn-${uuidProduct}`).click();
-                        cy.get('[aria-label="close"]').click();
+                        cy.get('[aria-label="close"]').first().click();
                         cy.location('pathname').then((pathName) => {
                             const pathSegments = pathName.split('/');
                             const uuidApp = pathSegments[pathSegments.length - 2];
@@ -173,7 +173,7 @@ describe("devportal-004-00 : Invoke API Product with keys", () => {
                             cy.contains('Subscribe APIs').click();
 
                             cy.get(`#policy-subscribe-btn-${uuidProduct}`).click();
-                            cy.get('[aria-label="close"]').click();
+                            cy.get('[aria-label="close"]').first().click();
 
                             cy.visit(`/devportal/apis/${uuidProduct}/test`);
                             cy.wait(2000);

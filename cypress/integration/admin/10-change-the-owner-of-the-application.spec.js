@@ -25,6 +25,11 @@ describe("Change the owner of application", () => {
   const carbonUsername = "admin";
   const carbonPassword = "admin";
 
+  before(() => {
+    cy.loginToDevportal(carbonUsername, carbonPassword);
+    cy.logoutFromDevportal();
+  })
+  
   it.only("Change the owner of application", () => {
     //Create application
     cy.loginToDevportal(developer, password);

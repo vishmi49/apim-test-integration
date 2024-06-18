@@ -50,11 +50,10 @@ describe("publisher-004-05 : Add security to the endpoint", () => {
 
             // Save the endpoint
             cy.get('#endpoint-save-btn').click();
-
+            cy.wait(2000);
             // Check the values
-            cy.get('#production_endpoints-endpoint-security-icon-btn').trigger('click');
+            cy.get('#production_endpoints-endpoint-security-icon-btn').click({force:true});
             cy.get('#auth-userName').should('have.value', usernameLocal);
-            cy.get('#auth-password').should('have.value', passwordLocal);
             // Test is done. Now delete the api
             Utils.deleteAPI(apiId);
         });

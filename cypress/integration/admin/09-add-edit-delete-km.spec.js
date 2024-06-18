@@ -38,9 +38,11 @@ describe("admin-09 : Add key manager", () => {
 
         cy.get('[data-testid="Key Managers"]').click();
         if (isGlobal) {
-            cy.get('.MuiButton-label').contains('Add Global Key Manager').click();
+            cy.get('[data-testid="add-km-dropdown"]').click()
+            cy.contains('Add Global Key Manager').click()
+            cy.get('[data-testid="add-key-manager-button"]').contains('Add Global Key Manager').click();
         } else {
-            cy.get('.MuiButton-label').contains('Add Key Manager').click();
+            cy.get('[data-testid="add-key-manager-button"]').contains('Add Key Manager').click();
         }
         cy.get('input[name="name"]').type(km);
         cy.get('input[name="displayName"]').type(km);
