@@ -38,7 +38,23 @@ describe("Self Signup", () => {
     const incorrectPassword = 'incorrectPassword';
     const tenantAdminUsername = 'admin';
     const tenantAdminPassword = 'admin';
-         
+
+before(() => {
+    // Add tenant admin username and password in carbon selfSignUp config
+    cy.carbonLogin(tenantAdminUsername, tenantAdminPassword, testTenant);
+    cy.wait(3000);
+    cy.get('#region3_registry_menu').click();
+    cy.get('[style="background-image: url(../resources/images/resources.gif);"]').scrollIntoView().click();
+    cy.get('#uLocationBar').type('_system/governance/apimgt/applicationdata/sign-up-config.xml').type('{enter}');
+    cy.get(`[onclick="displayUploadContent('/_system/governance/apimgt/applicationdata/sign-up-config.xml\')"]`).click().then(function () {
+        const filepath = `selfSignUpConfig.xml`;
+        cy.get('input[type="file"]').attachFile(filepath);
+        cy.get('#uploadContentButtonID').click();
+    });
+    cy.wait(3000);
+    cy.carbonLogout();
+})
+
 it.only("Verify default self-signup behaviour of the super tenant", () => {
     cy.addNewUserUsingSelfSignUp(superTenant1Username, password, firstName, lastName, getSuperTenantEmail(superTenant1Username), superTenant);
     cy.addExistingUserUsingSelfSignUp(superTenant1Username, superTenant);
