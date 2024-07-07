@@ -44,14 +44,12 @@ describe("Change the owner of application", () => {
         cy.get("td > span").click({ force: true });
       });
     });
-
+    
     //change the owner
     cy.get('div[role="dialog"]').contains("div", "owner");
     cy.get('input[name="owner"]').click().clear();
     cy.get('input[name="owner"]').type("admin");
     cy.get('button > span').contains('Save').click({force:true});
-
-    
     cy.wait(10000);
     cy.get("#itest-application-list-table").within(() => {
       cy.contains("tr", appName).within(() => {
